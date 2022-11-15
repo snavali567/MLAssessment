@@ -85,12 +85,13 @@ def data_preprocessing(url):
     # Handling data imbalance
     print("Handling Data Imbalance now")
     min_rows = min(len(df.query(f"{target_column_name}==1")), len(df.query(f"{target_column_name}==0")))
-
     class_1_idx = random.sample(list(df.query(f'{target_column_name}==1').index), min_rows)
     class_0_idx = random.sample(list(df.query(f'{target_column_name}==0').index), min_rows)
 
     # Use indices to select data
     df_new = df.loc[class_1_idx + class_0_idx]
+
+    print("shape after data balancing:", df_new.shape)
 
     target = df_new[target_column_name]
     data = df_new.drop([target_column_name], axis=1)

@@ -63,7 +63,7 @@ def save_model(trained_model, data_train, model_name):
 
 
 def trainer(data_url):
-    max_iter = 4000
+    max_iter = 2000
 
     data_train, data_valid, target_train, target_valid = data_preprocessing(data_url)
 
@@ -75,20 +75,20 @@ def trainer(data_url):
     categorical_columns = categorical_columns_selector(data_train)
 
     # Use for logistic regression
-    categorical_preprocessor = OneHotEncoder(handle_unknown="ignore")
+    # categorical_preprocessor = OneHotEncoder(handle_unknown="ignore")
     numerical_preprocessor = StandardScaler()
 
     # Use for Gradient Boost Algo
-    categorical_preprocessor_gradient_boost = OrdinalEncoder(handle_unknown="use_encoded_value",
+    categorical_preprocessor = OrdinalEncoder(handle_unknown="use_encoded_value",
                                                              unknown_value=-1)
 
-    preprocessor = ColumnTransformer([
-        ('one-hot-encoder', categorical_preprocessor, categorical_columns),
-        ('standard_scaler', numerical_preprocessor, numerical_columns)])
+    # preprocessor = ColumnTransformer([
+    #     ('one-hot-encoder', categorical_preprocessor, categorical_columns),
+    #     ('standard_scaler', numerical_preprocessor, numerical_columns)])
 
-    preprocessor_gradient_boost = ColumnTransformer([
-        ('one-hot-encoder', categorical_preprocessor_gradient_boost, categorical_columns),
-        ('standard_scaler', numerical_preprocessor, numerical_columns)])
+    preprocessor = ColumnTransformer([
+    ('categorical', categorical_preprocessor, categorical_columns),
+    ('standard_scaler', numerical_preprocessor, numerical_columns)])
 
     # define the model pipeline and validate the model on the validation set
 
@@ -98,7 +98,7 @@ def trainer(data_url):
     validate(trained_model_lr, data_valid, target_valid, "Logistic Regression Model")
 
     # Gradient Boosting Model
-    model_gb = make_pipeline(preprocessor_gradient_boost, AdaBoostClassifier(n_estimators=100))
+    model_gb = make_pipeline(preprocessor, AdaBoostClassifier(n_estimators=100))
     trained_model_gb = train(model_gb, data_train, target_train, "Gradient Boosting Model")
     validate(trained_model_gb, data_valid, target_valid, "Gradient Boosting Model")
 

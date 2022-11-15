@@ -13,10 +13,11 @@ if [[ $(conda env list | grep Samarth_assessment) ]]; then
 	echo "Environment exists"
 else
 	echo "Environment does not exist"
-	conda create --name Samarth_assessment python=3.8 -u -p
+	conda create -n Samarth_assessment python=3.8 -y
 
 fi
 
+eval "$(conda shell.bash hook)"
 conda activate Samarth_assessment
 
 # install requirements
@@ -24,7 +25,7 @@ pip3 install -r requirements.txt
 
 # Check if installations are present in pip list
 # shellcheck disable=SC2143
-if [[ $(pip list | grep -E 'Flask|pandas|boto|scikit|pickle') ]]; then
+if [[ $(pip3 list | grep -E 'Flask|pandas|boto|scikit|pickle|progressbar') ]]; then
 	echo "All libraries are present"
 else
 	echo "Manually install required libraries from requirements.txt"

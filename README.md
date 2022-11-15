@@ -56,8 +56,8 @@ There were 2 models that were used. A baseline was built and then another model 
 
 Model | Accuracy
 ---|---
-Logistic Regression Model (Baseline) | 53.8%
-AdaBoost Model | **61.7**%
+Logistic Regression Model (Baseline) | 52.00%
+AdaBoost Model | **62.24**%
 
 
 ## Baseline Model 
