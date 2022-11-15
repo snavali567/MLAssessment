@@ -122,4 +122,8 @@ The server returns a json with Probability of the car being a make in the top 25
 This server was tested with Postman to send POST requests and get the output shown below
 
 
+#Notes
+
+1. Please change the permission of the `run.sh` by doing the `chmod+x run.sh` 
+
 
