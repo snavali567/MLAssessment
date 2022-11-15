@@ -102,28 +102,29 @@ The predict function uses the trained model from the `.pkl` to produce the outpu
   "Issue time": "1251.0",
   "RP State Plate": "CA" ,
   "Plate Expiry Date": "200304.0" ,
-  "Body Style": "ZZ" ,
-  "Color": "zz" ,
+  "Body Style": "PA" ,
   "Location": "13147 WELBY WAY" ,
   "Route": "01521" ,
   "Agency": "1.0",
   "Violation code": "4000A1"  ,
   "Violation Description": "NO EVIDENCE OF REG" ,
-  "Fine amount": "50.0"
+  "Fine amount": "50.0" 
 }
 ```
 
 The server returns a json with Probability of the car being a make in the top 25 car categories as shown below.
 ```
 {
-    "Probability of a top25 make": 0.5549295666083716
+    "Prediction": 0.49905668198804387
 }
 ```
 This server was tested with Postman to send POST requests and get the output shown below
-
+![img.png](img.png)
 
 #Notes
 
-1. Please change the permission of the `run.sh` by doing the `chmod+x run.sh` 
+1. **The Application has been tested on MAC OS**
+2. Please change the permission of the `run.sh` by doing the `chmod +x run.sh` 
+3. If you want to run the `cleanup.sh` by doing the `chmod +x cleanup.sh`
 
 
